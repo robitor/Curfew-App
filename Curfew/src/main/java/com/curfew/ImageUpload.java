@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -290,7 +291,12 @@ public class ImageUpload extends Activity {
         o2.inSampleSize = scale;
         bitmap = BitmapFactory.decodeFile(filePath, o2);
 
-        imgView.setImageBitmap(bitmap);
+
+        //rotate image
+        Matrix matrix = new Matrix();
+        matrix.postRotate(270);
+
+        imgView.setImageBitmap(Bitmap.createBitmap(bitmap, 0,0,bitmap.getWidth(), bitmap.getHeight(), matrix, true)); 
 
     }
 }

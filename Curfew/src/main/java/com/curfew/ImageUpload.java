@@ -17,7 +17,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -33,13 +32,10 @@ public class ImageUpload extends Activity {
     private static final int PICK_IMAGE = 1;
     private static final int RESULT_LOAD_IMAGE = 2;
     private ImageView imgView;
-    private Button upload;
-    private Button loadPicture;
-    private EditText caption;
     private Bitmap bitmap;
     private ProgressDialog dialog;
     private ParseUser mCurrentUser;
-    private String TAG = "com.curfew.ImageUpload";
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,11 +43,11 @@ public class ImageUpload extends Activity {
         setContentView(R.layout.imageupload);
 
         imgView = (ImageView) findViewById(R.id.ImageView);
-        upload = (Button) findViewById(R.id.Upload);
-        loadPicture = (Button) findViewById(R.id.load_picture_button);
+        Button upload = (Button) findViewById(R.id.Upload);
+        Button loadPicture = (Button) findViewById(R.id.load_picture_button);
         mCurrentUser = ParseUser.getCurrentUser();
 
-        loadPicture.setOnClickListener(new View.OnClickListener(){
+        loadPicture.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent i = new Intent(
                         Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -116,15 +112,16 @@ public class ImageUpload extends Activity {
 
                     try {
                         // OI FILE Manager
-                        String filemanagerstring = selectedImageUri.getPath();
+                        String fileManagerString;
+                        fileManagerString = selectedImageUri.getPath();
 
                         // MEDIA GALLERY
                         String selectedImagePath = getPath(selectedImageUri);
 
                         if (selectedImagePath != null) {
                             filePath = selectedImagePath;
-                        } else if (filemanagerstring != null) {
-                            filePath = filemanagerstring;
+                        } else if (fileManagerString != null) {
+                            filePath = fileManagerString;
                         } else {
                             Toast.makeText(getApplicationContext(), "Unknown path",
                                     Toast.LENGTH_LONG).show();
@@ -146,6 +143,7 @@ public class ImageUpload extends Activity {
             case RESULT_LOAD_IMAGE:
                 if (resultCode == RESULT_OK && null != data) {
                     Uri selectedImage = data.getData();
+
                     String[] filePathColumn = { MediaStore.Images.Media.DATA };
 
                     Cursor cursor = getContentResolver().query(selectedImage,
@@ -189,6 +187,7 @@ public class ImageUpload extends Activity {
             o2.inSampleSize=scale;
             return BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
         } catch (FileNotFoundException e) {
+            String TAG = "com.curfew.ImageUpload";
             Log.d(TAG, e.toString());
         }
         return null;
@@ -196,7 +195,7 @@ public class ImageUpload extends Activity {
 
     class ImageUploadTask extends AsyncTask <Void, Void, String>{
         @Override
-        protected String doInBackground(Void... unsued) {
+        protected String doInBackground(Void... unUsed) {
             try {
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);

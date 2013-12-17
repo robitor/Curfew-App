@@ -24,12 +24,31 @@
     <color name="grey">#DADFE1</color>
     <color name="dark_grey">#444444</color>
 
-
+    <string name="edit_profile">Edit Profile</string>
     <string name="title_activity_activity_mapview">activity_mapview</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_profile_settings">ProfileSettingsActivity</string>
     <string name="edit_profile_pic_button">Change Picture</string>
     <string name="title_activity_image_upload">ImageUploadActivity</string>
     <string name="exception_message">An error has occured</string>
+    <string name="title_activity_about">About</string>
+    <string name="about"><u>The Curfew Mission</u></string>
+    <string name="mission_statement"><li>The goal of Curfew is to provide both a safe, non-intrusive
+                                    means for parents and their adolescents to keep an open
+                                    line of communication with one another without the necessity
+                                    of the proverbial "midnight call and/or text".</li>
+    </string>
 
+    <string name="ability"><li>Curfew makes it easy for one user to select a curfew time for another
+                                user and track this curfew transparently. In the event that
+                                a user has not arrived to an agreed upon location by the
+                                curfew time, said users most recent location is then AND ONLY THEN
+                                revealed to the other user.</li></string>
+
+    <string name="message"><li>With these things in min, Curfew IS NOT a substitute
+                                        for a clear and open line of communication between
+                                        parents and their children. Curfew only hopes to facilitate
+                                        this communication in an effective manner for both
+                                        parties! </li></string>
+    <string name="About">About</string>
 </resources>

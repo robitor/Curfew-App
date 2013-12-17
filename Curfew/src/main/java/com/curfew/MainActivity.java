@@ -189,6 +189,10 @@ public class MainActivity extends Activity {
                 Intent intent3 = new Intent(this, ProfileSettingsActivity.class);
                 startActivity(intent3);
                 return true;
+            case R.id.about:
+                Intent intent4 = new Intent(this, About.class);
+                startActivity(intent4);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

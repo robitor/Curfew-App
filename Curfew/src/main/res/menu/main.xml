@@ -8,10 +8,26 @@
         android:id="@+id/action_add_curfew"
         android:title="@string/add_curfew"
         android:showAsAction="always"
-        android:icon="@drawable/circle_plus"/>
+        android:icon="@drawable/circle_plus" />
     <item
         android:id="@+id/action_profile_settings"
         android:icon="@drawable/cog"
-        android:title="Edit Profile"
-        android:showAsAction="always"/>
+        android:title="@string/edit_profile"
+        android:showAsAction="always" />
+
+
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:icon="@drawable/ic_settings"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+
+    <item
+        android:id="@id/about"
+        android:title="@string/About"
+        android:icon="@drawable/ic_about"
+        android:showAsAction="never" />
 </menu>
+
+

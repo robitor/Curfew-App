@@ -8,6 +8,10 @@
     <item
         android:id="@+id/logout"
         android:title="@string/logout" />
+    <item
+        android:id="@+id/action_profile_settings"
+        android:title="@string/edit_profile"
+        android:icon="@drawable/cog"/>
 
 
 </menu>

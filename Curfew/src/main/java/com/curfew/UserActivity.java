@@ -199,7 +199,7 @@ public class UserActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.user, menu);
+        getMenuInflater().inflate(R.menu.about, menu);
         return true;
     }
 
@@ -212,11 +212,16 @@ public class UserActivity extends Activity {
             case R.id.action_logout:
                 // Destroy this activity
                 ParseUser.logOut();
-                Intent intent = new Intent(this, LoginActivity.class);
-                startActivity(intent);
+                Intent intent_One = new Intent(this, LoginActivity.class);
+                startActivity(intent_One);
                 stopService(new Intent(this, CurfewService.class));
                 finish();
                 return true;
+            case R.id.about:
+                Intent intent_Two = new Intent(this, About.class);
+                startActivity(intent_Two);
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }

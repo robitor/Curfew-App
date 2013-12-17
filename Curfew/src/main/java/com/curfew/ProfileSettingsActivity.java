@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,6 +24,7 @@ public class ProfileSettingsActivity extends Activity {
     ImageView mProfilePicture;
     Button mEditProfilePicture;
     private String TAG = "com.curfew.ProfileSettingsActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,30 +47,50 @@ public class ProfileSettingsActivity extends Activity {
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
-        ParseFile file = (ParseFile)mCurrentUser.get("profilePicture");
-        try{
-            file.getDataInBackground(new GetDataCallback(){
-            @Override
-            public void done(byte[] data, ParseException e){
-                Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
-                if(data!=null)
-                    mProfilePicture.setImageBitmap(bmp);
+        ParseFile file = (ParseFile) mCurrentUser.get("profilePicture");
+        try {
+            file.getDataInBackground(new GetDataCallback() {
+                @Override
+                public void done(byte[] data, ParseException e) {
+                    Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
+                    if (data != null)
+                        mProfilePicture.setImageBitmap(bmp);
 
-            }
-        });
-        }catch(Exception e){
+                }
+            });
+        } catch (Exception e) {
             Log.d(TAG, e.toString());
         }
 
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.profile_settings, menu);
         return true;
+
     }
-    
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_logout:
+                // Destroy this activity
+                ParseUser.logOut();
+                Intent intent1 = new Intent(this, LoginActivity.class);
+                startActivity(intent1);
+                stopService(new Intent(this, CurfewService.class));
+                finish();
+                return true;
+            case R.id.about:
+                Intent intent2 = new Intent(this, About.class);
+                startActivity(intent2);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

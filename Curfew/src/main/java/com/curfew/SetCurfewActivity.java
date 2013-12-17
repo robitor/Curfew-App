@@ -61,7 +61,7 @@ public class SetCurfewActivity extends FragmentActivity implements DatePickerDia
         mSetCurfewTextView = (TextView) findViewById(R.id.editText);
         mImageView = (ImageView) findViewById(R.id.curfew_clock);
         cd = new ClockDrawable(100, R.color.black);
-        cd.setTime(0,0,0);
+        cd.setTime(0, 0, 0);
         mImageView.setBackground(cd);
 
         final TimePickerDialog timePickerDialog = TimePickerDialog.newInstance(this, 12, 0, isVibrate());
@@ -73,7 +73,7 @@ public class SetCurfewActivity extends FragmentActivity implements DatePickerDia
         });
 
 
-        mCurfewDateTextView= (TextView)findViewById(R.id.curfew_date);
+        mCurfewDateTextView = (TextView) findViewById(R.id.curfew_date);
         Calendar cal = Calendar.getInstance();
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
         mCurfewDateTextView.setText(df.format(cal.getTime()));
@@ -89,7 +89,7 @@ public class SetCurfewActivity extends FragmentActivity implements DatePickerDia
             }
         });
 
-        if (bundle != null && bundle.getString("username") != null){
+        if (bundle != null && bundle.getString("username") != null) {
             mSetCurfewTextView.setText(bundle.getString("username"));
             mSetCurfewTextView.setEnabled(false);
         }
@@ -177,6 +177,12 @@ public class SetCurfewActivity extends FragmentActivity implements DatePickerDia
                 stopService(new Intent(this, CurfewService.class));
                 finish();
                 return true;
+
+            case R.id.about:
+                Intent intent1 = new Intent(this, About.class);
+                startActivity(intent1);
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -204,6 +210,7 @@ public class SetCurfewActivity extends FragmentActivity implements DatePickerDia
         Toast.makeText(SetCurfewActivity.this, "Curfew saved: " + df.format(curfewDate.getTime()), Toast.LENGTH_SHORT).show();
 
     }
+
     private boolean isVibrate() {
         return false;
     }
